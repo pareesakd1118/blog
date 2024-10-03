@@ -1,3 +1,12 @@
 <h1><%= @article.title %></h1>
 
 <p> <%= @article.body %> </h1>
+
+<ul>
+    <li>
+        <%= link_to "Edit", edit_article_path(@article) %>
+    </li>
+    <li>
+        <%= link_to "Back", root_path %>
+    </li>
+</ul>
