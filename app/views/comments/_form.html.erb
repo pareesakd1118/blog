@@ -12,6 +12,11 @@
     </div><br>
 
     <div>
+        <%= form.label :status %> <br>
+        <%= form.select :status, Visible::VALID_STATUSES, selected: 'public' %> <%#i didn't do a article.comment.status here bc you can't edit a comment, so there would be no preexisting status to render other than public %>
+    </div><br>
+
+    <div>
         <%= form.submit %>
     </div>
 
