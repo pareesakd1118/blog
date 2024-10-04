@@ -31,19 +31,5 @@
 <h2>Be the first to comment: </h2>
 <% end %>
 
-<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+<%= render "comments/form", article: @article %>
 
-    <div>
-        <%= form.label :commenter %> <br>
-        <%= form.text_field :commenter %>
-    </div> <br>
-    <div>
-        <%= form.label :body %> <br>
-        <%= form.text_area :body %>
-    </div> <br>
-
-    <div>
-        <%= form.submit %>
-    </div>
-
-<% end %>
