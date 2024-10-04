@@ -19,7 +19,7 @@
     </ul>
 
 <% if @article.comments.present? %>
-    <h2> Comments: </h2>
+    <h2> <%= @article.comments.public_count %> Comments: </h2>
 <% end %>
 
 <%= render @article.comments %>
