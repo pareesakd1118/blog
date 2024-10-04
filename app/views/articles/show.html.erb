@@ -2,26 +2,37 @@
 
 <p> <%= @article.body %> </h1>
 
-<% @article.comments.each do |comment| %>
-   <p> <%= comment %> </p>
-    <% end %>
 
 <ul>
-    <li>
-        <%= link_to "Edit", edit_article_path(@article) %>
+<li>
+<%= link_to "Edit", edit_article_path(@article) %>
+</li>
+<li>
+<%= link_to "Back", root_path %>
+</li>
+<li>
+<%= link_to "Delete", article_path(@article), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+    } %>
     </li>
-    <li>
-        <%= link_to "Back", root_path %>
-    </li>
-    <li>
-        <%= link_to "Delete", article_path(@article), data: {
-            turbo_method: :delete,
-            turbo_confirm: "Are you sure?"
-        } %>
-    </li>
-</ul>
+    </ul>
 
+<% if @article.comments.present? %>
+    <h2> Comments: </h2>
+<% end %>
+
+    <% @article.comments.each do |comment| %>
+       <p> <strong>Commenter:</strong><%= comment.commenter %></p>
+       <p> <strong>Comment:</strong><%= comment.body %></p>
+    <% end %>
+
+<% if @article.comments.present? %>
 <h2> Add a comment </h2>
+<% else %>
+<h2>Be the first to comment: </h2>
+<% end %>
+
 <%= form_with model: [ @article, @article.comments.build ] do |form| %>
 
     <div>
