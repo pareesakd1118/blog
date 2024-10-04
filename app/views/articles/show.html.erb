@@ -22,10 +22,8 @@
     <h2> Comments: </h2>
 <% end %>
 
-    <% @article.comments.each do |comment| %>
-       <p> <strong>Commenter:</strong><%= comment.commenter %></p>
-       <p> <strong>Comment:</strong><%= comment.body %></p>
-    <% end %>
+<%= render @article.comments %>
+
 
 <% if @article.comments.present? %>
 <h2> Add a comment </h2>
@@ -38,11 +36,11 @@
     <div>
         <%= form.label :commenter %> <br>
         <%= form.text_field :commenter %>
-    </div>
+    </div> <br>
     <div>
         <%= form.label :body %> <br>
-        <%= form.text_field :body %>
-    </div>
+        <%= form.text_area :body %>
+    </div> <br>
 
     <div>
         <%= form.submit %>
