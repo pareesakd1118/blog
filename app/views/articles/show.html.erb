@@ -2,6 +2,10 @@
 
 <p> <%= @article.body %> </h1>
 
+<% @article.comments.each do |comment| %>
+   <p> <%= comment %> </p>
+    <% end %>
+
 <ul>
     <li>
         <%= link_to "Edit", edit_article_path(@article) %>
@@ -9,4 +13,28 @@
     <li>
         <%= link_to "Back", root_path %>
     </li>
+    <li>
+        <%= link_to "Delete", article_path(@article), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+        } %>
+    </li>
 </ul>
+
+<h2> Add a comment </h2>
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+
+    <div>
+        <%= form.label :commenter %> <br>
+        <%= form.text_field :commenter %>
+    </div>
+    <div>
+        <%= form.label :body %> <br>
+        <%= form.text_field :body %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+
+<% end %>

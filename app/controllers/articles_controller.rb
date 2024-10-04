@@ -39,6 +39,13 @@ class ArticlesController < ApplicationController
     end 
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+
+    redirect_to root_path, status: :see_other
+  end 
+
   private ##this is a private method, meaning it helps things work smoothly behind the scenes rather than hold direct logic for a CRUD method. This is an example of strong parameters and what its saying is in the article param you can only submit values for title and body attributes, anything else during form submission will be filtered out essentially. Use this when you are creating or updating. 
     def article_params
       params.require(:article).permit(:title, :body)
